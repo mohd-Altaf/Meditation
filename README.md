@@ -9,7 +9,6 @@ Built with **HTML, CSS, and JavaScript** to help you relax anytime in just one m
 - Exhale: 5s  
 - Auto-stops after 1 minute  
 
-###  Run Locally
-```bash
-git clone https://github.com/mohd-altaf/Meditation.git
 
+git clone - [https://mohd-altaf.github.io/Meditation/](https://mohd-altaf.github.io/Meditation/
+)
