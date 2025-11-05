@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>meditation</title>
+  <title>Meditation</title>
   <style>
     :root {
       --inhale-color: #196ed5;     /* Soft blue for inhale */
@@ -15,35 +15,34 @@
 
     * {
       box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
     body {
-      margin: 0;
       height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: space-evenly;
       background: var(--bg-gradient);
-      color: #f8fafc;
       font-family: 'Poppins', sans-serif;
-      overflow: hidden;
       text-align: center;
+      overflow: hidden;
       transition: background 3s ease-in-out;
-      padding:0;
     }
 
     h1 {
-      margin-bottom: 20px;
       font-weight: 600;
-      font-size: clamp(2rem, 4vw, 2.2rem);
+      font-size: clamp(1.8rem, 5vw, 2.4rem);
       letter-spacing: 0.5px;
       color: #3d75f6;
-      margin-bottom: 70px;
     }
 
-    .diff{ color: #2c15db; 
-    font-weight: 700; }
+    .diff {
+      color: #2c15db;
+      font-weight: 700;
+    }
 
     .circle {
       width: min(60vw, 220px);
@@ -54,14 +53,13 @@
       align-items: center;
       justify-content: center;
       color: white;
-      font-size: clamp(2rem, 3vw, 1.8rem);
+      font-size: clamp(1.5rem, 4vw, 2rem);
       transition: transform 3.8s ease-in-out, background 3.8s ease-in-out;
-      box-shadow: 0 0 35px rgba(255, 255, 255, 0.2);
+      box-shadow: 0 0 35px rgba(0, 0, 0, 0.15);
       font-weight: 700;
     }
 
     button {
-      margin-top: 30px;
       padding: 12px 30px;
       background: var(--button-gradient);
       border: none;
@@ -72,7 +70,6 @@
       font-weight: 600;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
       transition: all 0.3s ease;
-      margin-top: 70px;
     }
 
     button:hover {
@@ -82,24 +79,43 @@
 
     footer {
       position: absolute;
-      bottom: 10px;
+      bottom: 12px;
       color: #0b4791;
       font-size: clamp(0.8rem, 2.5vw, 1rem);
     }
 
-    @media (max-width: 500px)  {
+    /* ✅ Mobile Responsive Tweaks */
+    @media (max-width: 600px) {
       body {
-        padding: 0;
+        padding: 20px;
+        justify-content: space-evenly;
       }
+
+      h1 {
+        margin-bottom: 30px;
+        font-size: 1.8rem;
+      }
+
       .circle {
-        width: 60vh;
-        height: 60vh;
+        width: 70vw;
+        height: 70vw;
+        font-size: 1.6rem;
+      }
+
+      button {
+        margin-top: 40px;
+        padding: 10px 24px;
+      }
+
+      footer {
+        bottom: 8px;
+        font-size: 0.9rem;
       }
     }
   </style>
 </head>
 <body>
-  <h1>1-Minute <span class="diff"> Breathing</span> Exercise</h1>
+  <h1>1-Minute <span class="diff">Breathing</span> Exercise</h1>
   <div id="circle" class="circle">Ready</div>
   <button id="startBtn">Start</button>
   <footer>Inhale • Hold • Exhale • Repeat</footer>
@@ -149,4 +165,3 @@
   </script>
 </body>
 </html>
-
