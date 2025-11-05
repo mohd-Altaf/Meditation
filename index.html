@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>meditation</title>
+  <style>
+    :root {
+      --inhale-color: #196ed5;     /* Soft blue for inhale */
+      --hold-color: #0097f5;       /* Bright blue for hold */
+      --exhale-color: #196ed5;     /* Gentle blue for exhale */
+      --bg-gradient: #ffffff;      /* Simple white background */
+      --button-gradient: #818cf8;  /* Pleasant purple-blue button */
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg-gradient);
+      color: #f8fafc;
+      font-family: 'Poppins', sans-serif;
+      overflow: hidden;
+      text-align: center;
+      transition: background 3s ease-in-out;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      font-weight: 600;
+      font-size: clamp(1.5rem, 4vw, 2.2rem);
+      letter-spacing: 0.5px;
+      color: #3d75f6;
+      margin-bottom: 70px;
+    }
+
+    .circle {
+      width: min(60vw, 220px);
+      height: min(60vw, 220px);
+      border-radius: 50%;
+      background: var(--exhale-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: clamp(1.2rem, 3vw, 1.8rem);
+      transition: transform 5s ease-in-out, background 5s ease-in-out;
+      box-shadow: 0 0 35px rgba(255, 255, 255, 0.2);
+    }
+
+    button {
+      margin-top: 30px;
+      padding: 12px 30px;
+      background: var(--button-gradient);
+      border: none;
+      border-radius: 10px;
+      font-size: clamp(1rem, 3vw, 1.1rem);
+      cursor: pointer;
+      color: #0f172a;
+      font-weight: 600;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+      transition: all 0.3s ease;
+      margin-top: 70px;
+    }
+
+    button:hover {
+      transform: scale(1.08);
+      background: linear-gradient(90deg, #818cf8, #7dd3fc);
+    }
+
+    footer {
+      position: absolute;
+      bottom: 25px;
+      color: #0b4791;
+      font-size: clamp(0.8rem, 2.5vw, 1rem);
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 0 20px;
+      }
+      .circle {
+        width: 70vw;
+        height: 70vw;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>1-Minute Breathing Exercise</h1>
+  <div id="circle" class="circle">Ready</div>
+  <button id="startBtn">Start</button>
+  <footer>Inhale • Hold • Exhale • Repeat</footer>
+
+  <script>
+    const circle = document.getElementById('circle');
+    const startBtn = document.getElementById('startBtn');
+
+    const phases = [
+      { text: 'Inhale', scale: 1.5, color: 'var(--inhale-color)', duration: 4500 },
+      { text: 'Hold', scale: 1.5, color: 'var(--hold-color)', duration: 500 },
+      { text: 'Exhale', scale: 1, color: 'var(--exhale-color)', duration: 4500 }
+    ];
+
+    let interval, phaseIndex = 0;
+
+    function startBreathing() {
+      startBtn.disabled = true;
+      startBtn.textContent = 'Relaxing...';
+      phaseIndex = 0;
+      runPhase();
+
+      // Stop after 60 seconds
+      setTimeout(() => {
+        clearInterval(interval);
+        circle.textContent = 'Done';
+        circle.style.transform = 'scale(1)';
+        circle.style.background = 'var(--exhale-color)';
+        startBtn.disabled = false;
+        startBtn.textContent = 'Restart';
+      }, 60000);
+    }
+
+    function runPhase() {
+      const phase = phases[phaseIndex];
+      circle.textContent = phase.text;
+      circle.style.transform = `scale(${phase.scale})`;
+      circle.style.background = phase.color;
+
+      interval = setTimeout(() => {
+        phaseIndex = (phaseIndex + 1) % phases.length;
+        runPhase();
+      }, phase.duration);
+    }
+
+    startBtn.addEventListener('click', startBreathing);
+  </script>
+</body>
+</html>
